@@ -113,7 +113,7 @@ class SegmentWidget(QtWidgets.QWidget):
         self.fps = fps
         super(SegmentWidget, self).__init__()
         self._height_scale = 115.0
-        self.setMinimumSize(1, self._height_scale * self.logicalDpiX() / 96.0)
+        self.setMinimumSize(1, int(self._height_scale * self.logicalDpiX() / 96.0))
         self._segment_manager = segment_manager
         self._start = segment_manager.segments[0].start
         self._end = segment_manager.segments[-1].end
@@ -306,12 +306,12 @@ class Window(QtWidgets.QMainWindow):
 
         widget_vbox = QtWidgets.QWidget()
         vbox = QtWidgets.QVBoxLayout()
-        vbox.setSpacing(10.0 * self.logicalDpiY() / 96.0)
+        vbox.setSpacing(int(10.0 * self.logicalDpiY() / 96.0))
         widget_vbox.setLayout(vbox)
         self.setCentralWidget(widget_vbox)
 
         hbox = QtWidgets.QHBoxLayout()
-        hbox.setSpacing(8.0 * self.logicalDpiX() / 96.0)
+        hbox.setSpacing(int(8.0 * self.logicalDpiX() / 96.0))
         vbox.addLayout(hbox)
 
         self._button_play = QtWidgets.QPushButton("play")
@@ -344,14 +344,14 @@ class Window(QtWidgets.QMainWindow):
         vbox.addWidget(self._index_label)
 
         hbox_intent = QtWidgets.QHBoxLayout()
-        hbox_intent.setSpacing(8.0 * self.logicalDpiX() / 96.0)
+        hbox_intent.setSpacing(int(8.0 * self.logicalDpiX() / 96.0))
         vbox.addLayout(hbox_intent)
 
         timer = QtCore.QTimer(self)
         timer.timeout.connect(self.on_timer_timeout)
         timer.start(16)
 
-        self.setGeometry(100, 100, 600.0 * self.logicalDpiX() / 96.0, 1)
+        self.setGeometry(100, 100, int(600.0 * self.logicalDpiX() / 96.0), 1)
         self.setFixedHeight(self.sizeHint().height())
 
         self.setFocusPolicy(QtCore.Qt.ClickFocus)
